@@ -8,3 +8,17 @@ Template: mfwthemeproject
 Version: 1.0
 */
 
+
+.top-bar {
+    background-color: #0078a8;
+    border-bottom-color: #006e9b;
+}
+
+#footer {
+    background-color: #006b96;
+}
+
+.navbar {
+    background-color: #0087be;
+}
+
