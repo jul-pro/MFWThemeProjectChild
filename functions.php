@@ -66,3 +66,20 @@ function add_media_buttons() {
             . __('Insert shortcode', T_TD) . '</a>';
     echo $button;
 }
+
+add_action('init', 'setupTinyMCE');
+function setupTinyMCE() {
+    add_filter('mce_external_plugins', 'addTinyMCE');
+    add_filter('mce_buttons', 'addTinyMCEToolbar');
+}
+
+function addTinyMCE($plugin_array) {
+    $plugin_array['mfwthemeprojectchild_custom_class'] = get_stylesheet_directory_uri().'/assets/js/mytinymce.js';
+    return $plugin_array;
+}
+
+function addTinyMCEToolbar($buttons) {
+    array_push($buttons, 'guest_book_shortcode_button');
+    return $buttons;
+}
+
