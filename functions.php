@@ -14,6 +14,11 @@ function mfwthemeprojectchild_scripts() {
 }
 add_action('wp_enqueue_scripts', 'mfwthemeprojectchild_scripts');
 
+function mfwthemeprojectchild_admin_scripts() {
+    wp_enqueue_script( 'mfwthemeprojectchild-admin-main', get_stylesheet_directory_uri() . '/assets/js/mfwthemeprojectchild-admin-main.js' );
+}
+add_action('admin_enqueue_scripts', 'mfwthemeprojectchild_admin_scripts');
+
 function filter_title($title) {
     if( isset( $title['site'] ) ) {
         $title['site'] .= ' - MFW Theme Project Child Theme';
@@ -47,3 +52,17 @@ function render_child_theme_page() {
 }
 
 add_action('admin_menu', 'add_theme_menu');
+
+add_shortcode( 'mfwthemeprojectchild_guest_book', 'guest_book_shortcode');
+function guest_book_shortcode() {
+    $output = 'Guest Book';
+    return $output;
+}
+
+add_action('media_buttons', 'add_media_buttons');
+
+function add_media_buttons() {
+    $button = '<a href="#" id="guest_book_shortcode_button" class="su-generator-button button">'
+            . __('Insert shortcode', T_TD) . '</a>';
+    echo $button;
+}
